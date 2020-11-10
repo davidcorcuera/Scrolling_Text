@@ -15,5 +15,8 @@ Aunque parece ser que la creencia más extendida sobre la razón por la que Gaus
 Como podéis ver, en ninguna de ellas se duda de que Gauss aprendiera ruso a esta avanzada edad, sino que no está claro que la razón fuera poder leer a Lobachevsky. Lo que sí parece cierto es que, como hemos comentado, Gauss tenía una tremenda habilidad para aprender idiomas, y que en cierto modo aprender una nueva lengua era para él un pasatiempo. Que en este caso la razón principal fuera la geometría hiperbólica de Lobachevsky es, cuanto menos, plausible.\n\n
         https://www.gaussianos.com/gauss-y-el-ruso</string>
     <string name="add_comment">Add Comment</string>
+    <string name="delete">Delete</string>
+    <string name="share">Share</string>
+    <string name="edit">Edit</string>
 
 </resources>
