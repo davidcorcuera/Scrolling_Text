@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,6 +75,35 @@ public class MainActivity extends AppCompatActivity {
                 mActionMode = MainActivity.this.startActionMode(mActionCallback);
                 view.setSelected(true);
 
+            }
+        });
+
+        Button mButton = findViewById(R.id.comment_button);
+        mButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                PopupMenu popup = new PopupMenu(MainActivity.this,view);
+                popup.getMenuInflater().inflate(R.menu.menu_context,popup.getMenu());
+                popup.show();
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()) {
+                            case R.id.context_edit:
+                                displayToast("Edit choice clicked.");
+                                return true;
+                            case R.id.context_share:
+                                displayToast("Share choice clicked.");
+                                return true;
+                            case R.id.context_delete:
+                                displayToast("Delete choice clicked.");
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                });
             }
         });
 
