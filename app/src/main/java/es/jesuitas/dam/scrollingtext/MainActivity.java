@@ -2,9 +2,11 @@ package es.jesuitas.dam.scrollingtext;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import android.view.ActionMode;
 
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +15,48 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private android.view.ActionMode mActionMode;
+    private ActionMode.Callback mActionCallback = new ActionMode.Callback(){
+
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_cab,menu);
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            switch (item.getItemId()){
+                case R.id.context_edit:
+                    displayToast("Edit choice clicked.");
+                    mActionMode.finish();
+                    return true;
+                case R.id.context_share:
+                    displayToast("Share choice clicked.");
+                    mActionMode.finish();
+                    return true;
+                case R.id.context_delete:
+                    displayToast("Delete choice clicked.");
+                    mActionMode.finish();
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            mActionMode = null;
+        }
+    };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +64,17 @@ public class MainActivity extends AppCompatActivity {
 
         TextView article_text = findViewById(R.id.article);
         registerForContextMenu(article_text);
+
+        TextView subheading_text = findViewById(R.id.article_subheading);
+        subheading_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mActionMode != null) return;
+                mActionMode = MainActivity.this.startActionMode(mActionCallback);
+                view.setSelected(true);
+
+            }
+        });
 
     }
 
